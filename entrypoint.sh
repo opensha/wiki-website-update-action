@@ -21,14 +21,17 @@ git config --global user.name "$USER_NAME"
 git clone --single-branch --branch "$WIKI_REPOSITORY_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$WIKI_USERNAME/$WIKI_REPOSITORY_NAME.git" "$CLONE_DIR"
 ls -la "$CLONE_DIR"
 
+ORIG_DIR=$(mktemp -d)
+git clone --single-branch --branch "$TARGET_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$GITHUB_REPOSITORY.git" "$ORIG_DIR"
+
 TARGET_DIR=$(mktemp -d)
 # This mv has been the easier way to be able to remove files that were there
 # but not anymore. Otherwise we had to remove the files from "$CLONE_DIR",
 # including "." and with the exception of ".git/"
-mv "$CLONE_DIR/.git*" "$TARGET_DIR"
+mv "$ORIG_DIR/.git*" "$TARGET_DIR"
 
 echo "Copy contents to target git repository"
-cp -ra "$SOURCE_DIRECTORY"/. "$TARGET_DIR"
+cp -ra "$CLONE_DIR"/. "$TARGET_DIR"
 cd "$TARGET_DIR"
 
 if [[ -e Home.md ]];then
