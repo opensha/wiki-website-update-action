@@ -1,11 +1,8 @@
 name: 'Update Wiki-Website'
 description: 'Copies all files from a wiki to a this (usually a GitHub pages) repository. Then moves Home.md to index.md, and creates a custom Home.md that permalinks to /.'
 inputs:
-  wiki-github-username:
-    description: 'Name of the source wiki username/organization'
-    required: true
-  wiki-repository-name:
-    description: 'Wiki repository name (ends in .wiki)'
+  wiki-repository:
+    description: 'Name of the source wiki repository: username/repo.wiki or organization/repo.wiki'
     required: true
   wiki-branch:
     description: '[Optional] Wiki repository branch, defaults to "master"'
@@ -21,12 +18,8 @@ inputs:
     description: '[Optional] commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo'
     default: 'Automated wiki-website update'
     required: false
-  destination-github-username:
-    description: '[Optional] username of the destination repository. Defaults to the organization/username of this repository'
-    default: ''
-    required: false
-  destination-repository-name:
-    description: '[Optional] name of the destination repository. Defaults to the name of this repository'
+  destination-repository:
+    description: '[Optional] Name of the destination repository. Defaults to the this repository'
     default: ''
     required: false
   destination-branch:
@@ -37,14 +30,12 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.wiki-github-username }}
-    - ${{ inputs.wiki-repository-name }}
+    - ${{ inputs.wiki-repository }}
     - ${{ inputs.wiki-branch }}
     - ${{ inputs.user-email }}
     - ${{ inputs.user-name }}
     - ${{ inputs.commit-message }}
-    - ${{ inputs.destination-github-username }}
-    - ${{ inputs.destination-repository-name }}
+    - ${{ inputs.destination-repository }}
     - ${{ inputs.destination-branch }}
 branding:
   icon: 'git-commit'
