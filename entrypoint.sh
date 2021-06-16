@@ -24,12 +24,13 @@ ls -la "$CLONE_DIR"
 TARGET_DIR=$(mktemp -d)
 echo "Cloning current destination git repository into $TARGET_DIR"
 git clone --single-branch --branch "$TARGET_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$GITHUB_REPOSITORY.git" "$TARGET_DIR"
+
+cd "$TARGET_DIR"
 # remove everything that's not git/github related
 rm -rv !(.git*)
 
 echo "Copy contents to target git repository"
-cp -ra "$CLONE_DIR"/. "$TARGET_DIR"
-cd "$TARGET_DIR"
+cp -ra "$CLONE_DIR"/* .
 
 if [[ -e Home.md ]];then
   echo "Moving Home.md to index.md"
