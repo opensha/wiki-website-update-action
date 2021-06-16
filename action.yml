@@ -7,7 +7,7 @@ inputs:
   wiki-repository-name:
     description: 'Wiki repository name (ends in .wiki)'
     required: true
-  wiki-repository-branch:
+  wiki-branch:
     description: '[Optional] Wiki repository branch, defaults to "master"'
     default: 'master'
     required: false
@@ -21,6 +21,14 @@ inputs:
     description: '[Optional] commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo'
     default: 'Automated wiki-website update'
     required: false
+  destination-github-username:
+    description: '[Optional] username of the destination repository. Defaults to the organization/username of this repository'
+    default: ''
+    required: false
+  destination-repository-name:
+    description: '[Optional] name of the destination repository. Defaults to the name of this repository'
+    default: ''
+    required: false
   destination-branch:
     description: '[Optional] set target branch name for the destination repository. Defaults to "master" for historical reasons'
     default: 'master'
@@ -31,10 +39,12 @@ runs:
   args:
     - ${{ inputs.wiki-github-username }}
     - ${{ inputs.wiki-repository-name }}
-    - ${{ inputs.wiki-repository-branch }}
+    - ${{ inputs.wiki-branch }}
     - ${{ inputs.user-email }}
     - ${{ inputs.user-name }}
     - ${{ inputs.commit-message }}
+    - ${{ inputs.destination-github-username }}
+    - ${{ inputs.destination-repository-name }}
     - ${{ inputs.destination-branch }}
 branding:
   icon: 'git-commit'
