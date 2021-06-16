@@ -31,7 +31,7 @@ runs:
   args:
     - ${{ inputs.wiki-github-username }}
     - ${{ inputs.wiki-repository-name }}
-    - ${{ inputs.wiki-github-username }}
+    - ${{ inputs.wiki-repository-branch }}
     - ${{ inputs.user-email }}
     - ${{ inputs.user-name }}
     - ${{ inputs.commit-message }}
