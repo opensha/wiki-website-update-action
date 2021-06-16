@@ -5,8 +5,12 @@ inputs:
     description: 'Name of the source wiki username/organization'
     required: true
   wiki-repository-name:
-    description: 'Destination repository'
+    description: 'Wiki repository name (ends in .wiki)'
     required: true
+  wiki-repository-branch:
+    description: '[Optional] Wiki repository branch, defaults to "master"'
+    default: 'master'
+    required: false
   user-email:
     description: 'Email for the git commit'
     required: true
@@ -27,6 +31,7 @@ runs:
   args:
     - ${{ inputs.wiki-github-username }}
     - ${{ inputs.wiki-repository-name }}
+    - ${{ inputs.wiki-github-username }}
     - ${{ inputs.user-email }}
     - ${{ inputs.user-name }}
     - ${{ inputs.commit-message }}
