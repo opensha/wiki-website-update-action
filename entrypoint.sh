@@ -18,7 +18,7 @@ echo "Cloning destination git repository"
 # Setup git
 git config --global user.email "$USER_EMAIL"
 git config --global user.name "$USER_NAME"
-git clone --single-branch --branch "$TARGET_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$WIKI_USERNAME/$WIKI_REPOSITORY_NAME.git" "$CLONE_DIR"
+git clone --single-branch --branch "$WIKI_REPOSITORY_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$WIKI_USERNAME/$WIKI_REPOSITORY_NAME.git" "$CLONE_DIR"
 ls -la "$CLONE_DIR"
 
 TARGET_DIR=$(mktemp -d)
