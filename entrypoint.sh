@@ -13,22 +13,18 @@ COMMIT_MESSAGE="$6"
 TARGET_BRANCH="$7"
 
 CLONE_DIR=$(mktemp -d)
-
-echo "Cloning destination git repository"
+echo "Cloning source wiki git repository into $CLONE_DIR"
 # Setup git
 git config --global user.email "$USER_EMAIL"
 git config --global user.name "$USER_NAME"
 git clone --single-branch --branch "$WIKI_REPOSITORY_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$WIKI_USERNAME/$WIKI_REPOSITORY_NAME.git" "$CLONE_DIR"
 ls -la "$CLONE_DIR"
 
-ORIG_DIR=$(mktemp -d)
-git clone --single-branch --branch "$TARGET_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$GITHUB_REPOSITORY.git" "$ORIG_DIR"
-
 TARGET_DIR=$(mktemp -d)
-# This mv has been the easier way to be able to remove files that were there
-# but not anymore. Otherwise we had to remove the files from "$CLONE_DIR",
-# including "." and with the exception of ".git/"
-mv "$ORIG_DIR/.git*" "$TARGET_DIR"
+echo "Cloning current destination git repository into $TARGET_DIR"
+git clone --single-branch --branch "$TARGET_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$GITHUB_REPOSITORY.git" "$TARGET_DIR"
+# remove everything that's not git/github related
+rm -rv !(.git*)
 
 echo "Copy contents to target git repository"
 cp -ra "$CLONE_DIR"/. "$TARGET_DIR"
