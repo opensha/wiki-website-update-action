@@ -2,7 +2,7 @@ name: 'Update Wiki-Website'
 description: 'Copies all files from a wiki to a this (usually a GitHub pages) repository. Then moves Home.md to index.md, and creates a custom Home.md that permalinks to /.'
 inputs:
   wiki-github-username:
-    description: 'Name of the source wiki's username/organization'
+    description: 'Name of the source wiki username/organization'
     required: true
   wiki-repository-name:
     description: 'Destination repository'
@@ -11,7 +11,7 @@ inputs:
     description: 'Email for the git commit'
     required: true
   user-name:
-    description: 'Name for the git commit. Defaults to the destination username/organization name'
+    description: 'User name for the git commit.'
     required: true
   commit-message:
     description: '[Optional] commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo'
