@@ -21,7 +21,7 @@ git config --global user.name "$USER_NAME"
 git clone --single-branch --branch "$WIKI_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$WIKI_REPOSITORY.git" "$CLONE_DIR"
 ls -la "$CLONE_DIR"
 
-if [[ -z TARGET_REPOSITORY ]];then
+if [[ -z "$TARGET_REPOSITORY" ]];then
   TARGET_REPOSITORY="$GITHUB_REPOSITORY"
 fi
 
