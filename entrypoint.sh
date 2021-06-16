@@ -6,10 +6,11 @@ set -u  # script fails if trying to access to an undefined variable
 echo "Starts"
 WIKI_USERNAME="$1"
 WIKI_REPOSITORY_NAME="$2"
-USER_EMAIL="$3"
-USER_NAME="$4"
-COMMIT_MESSAGE="$5"
-TARGET_BRANCH="$6"
+WIKI_REPOSITORY_BRANCH="$3"
+USER_EMAIL="$4"
+USER_NAME="$5"
+COMMIT_MESSAGE="$6"
+TARGET_BRANCH="$7"
 
 CLONE_DIR=$(mktemp -d)
 
