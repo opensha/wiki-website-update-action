@@ -26,8 +26,13 @@ echo "Cloning current destination git repository into $TARGET_DIR"
 git clone --single-branch --branch "$TARGET_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$GITHUB_REPOSITORY.git" "$TARGET_DIR"
 
 cd "$TARGET_DIR"
+echo "Initial contents:"
+ls -la
+echo "Removing everything besides git files"
 # remove everything that's not git/github related
 rm -rv !(.git*)
+echo "Retained files"
+ls -la
 
 echo "Copy contents to target git repository"
 cp -ra "$CLONE_DIR"/* .
