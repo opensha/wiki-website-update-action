@@ -56,6 +56,9 @@ echo "---" >> Home.md
 echo "Files that will be pushed:"
 ls -la
 
+echo "Git status"
+git status
+
 ORIGIN_COMMIT="https://github.com/$TARGET_REPOSITORY/commit/$GITHUB_SHA"
 COMMIT_MESSAGE="${COMMIT_MESSAGE/ORIGIN_COMMIT/$ORIGIN_COMMIT}"
 COMMIT_MESSAGE="${COMMIT_MESSAGE/\$GITHUB_REF/$GITHUB_REF}"
