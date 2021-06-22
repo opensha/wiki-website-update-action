@@ -2,7 +2,7 @@
 
 GitHub action to update a wiki-backed website with wiki contents. The wiki should already contain all configuration files related to GitHub pages (\_config.yml, stylesheets, templates, etc). It is based on [this Action](https://github.com/cpina/github-action-push-to-another-repository).
 
-See an [example implementation here](https://github.com/opensha/wgcep-website), where the wiki is automatically synced to the `gh-pages` branch.
+See an [example implementation here](https://github.com/kevinmilner/wiki-website-demo), where the wiki is automatically synced to the `gh-pages` branch.
 
 ## Inputs
 
