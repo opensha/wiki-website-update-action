@@ -12,6 +12,8 @@ USER_NAME="$4"
 COMMIT_MESSAGE="$5"
 TARGET_REPOSITORY="$6"
 TARGET_BRANCH="$7"
+TEMPLATE_REPOSITORY="$8"
+TEMPLATE_BRANCH="$9"
 
 CLONE_DIR=$(mktemp -d)
 echo "Cloning source wiki git repository into $CLONE_DIR"
@@ -23,6 +25,12 @@ ls -la "$CLONE_DIR"
 
 if [[ -z "$TARGET_REPOSITORY" ]];then
   TARGET_REPOSITORY="$GITHUB_REPOSITORY"
+fi
+
+if [[ ! -z "$TEMPLATE_REPOSITORY" ]];then
+  TEMPLATE_DIR=$(mktemp -d)
+  echo "Cloning template git repository into $TEMPLATE_DIR"
+  git clone --single-branch --branch "$TEMPLATE_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$TEMPLATE_BRANCH.git" "$TEMPLATE_DIR"
 fi
 
 TARGET_DIR=$(mktemp -d)
@@ -37,6 +45,11 @@ echo "Removing everything besides git files"
 rm -rv !(.git*)
 echo "Retained files:"
 ls -la
+
+if [[ -e $TEMPLATE_DIR ]];then
+  echo "Copy template contents to target git repository"
+  cp -ra "$TEMPLATE_DIR"/* .
+fi
 
 echo "Copy contents to target git repository"
 cp -ra "$CLONE_DIR"/* .
