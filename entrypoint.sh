@@ -30,7 +30,7 @@ fi
 if [[ ! -z "$TEMPLATE_REPOSITORY" ]];then
   TEMPLATE_DIR=$(mktemp -d)
   echo "Cloning template git repository into $TEMPLATE_DIR"
-  git clone --single-branch --branch "$TEMPLATE_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$TEMPLATE_BRANCH.git" "$TEMPLATE_DIR"
+  git clone --single-branch --branch "$TEMPLATE_BRANCH" "https://$USER_NAME:$API_TOKEN_GITHUB@github.com/$TEMPLATE_REPOSITORY.git" "$TEMPLATE_DIR"
 fi
 
 TARGET_DIR=$(mktemp -d)
