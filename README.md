@@ -13,8 +13,11 @@ See an [example implementation here](https://github.com/opensha/wgcep-website), 
 * `commit-message`: (Optional) commit message for the output repository. ORIGIN_COMMIT is replaced by the URL@commit in the origin repo
 * `destination-repository`: (Optional) Name of the destination repository. Defaults to the this repository
 * `destination-branch`: (Optional) set target branch name for the destination repository. Defaults to "master" for historical reasons
+* `template-repository`: (Optional) Name of a template repository, from which to copy files (e.g., Jekyll files) before copying over wiki contents. Otherwise, it is assumed that the wiki repository already has any necessary Jekyll files.
+* `template-branch`: (Optional) set branch name for the template repository, if supplied. Defaults to "master" for historical reasons
 
-### `API_TOKEN_GITHUB` (environment)
+### Environment: `API_TOKEN_GITHUB`
+
 E.g.:
   `API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}`
 
