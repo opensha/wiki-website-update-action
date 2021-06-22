@@ -26,6 +26,14 @@ inputs:
     description: '[Optional] set target branch name for the destination repository. Defaults to "master" for historical reasons'
     default: 'master'
     required: false
+  template-repository:
+    description: '[Optional] Name of the template repository. Defaults to no template (only copy files from wiki)'
+    default: ''
+    required: false
+  template-branch:
+    description: '[Optional] set template branch name. Defaults to "master" for historical reasons'
+    default: 'master'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -37,6 +45,8 @@ runs:
     - ${{ inputs.commit-message }}
     - ${{ inputs.destination-repository }}
     - ${{ inputs.destination-branch }}
+    - ${{ inputs.template-repository }}
+    - ${{ inputs.template-branch }}
 branding:
   icon: 'git-commit'
   color: 'green'
