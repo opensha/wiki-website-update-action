@@ -46,7 +46,7 @@ rm -rv !(.git*)
 echo "Retained files:"
 ls -la
 
-if [[ -e $TEMPLATE_DIR ]];then
+if [[ ! -z "$TEMPLATE_REPOSITORY" ]];then
   echo "Copy template contents to target git repository"
   cp -ra "$TEMPLATE_DIR"/* .
 fi
